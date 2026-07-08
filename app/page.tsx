@@ -1,12 +1,29 @@
+"use client"
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Home() {
+  const [phone_number_intake, setPhoneNumber] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
   return (
-    <main>
-      <h1>Client riding with you this week? We'll detail your car in your driveway before they do.</h1>
-      <p>Drop your number and claim 20% off your first detail. We text you a quote — no lifting a finger.</p>
-      <button>Text me my quote</button>
-    </main>
+    <div>
+      { submitted ? (
+          <p>Thanks — we'll text you shortly.</p>
+      ) : (
+          <main>
+            <h1>Client riding with you this week? We'll detail your car in your driveway before they do.</h1>
+            <p>Drop your number and claim 20% off your first detail. We text you a quote — no lifting a finger.</p>
+            <input placeholder="Your phone number" value={phone_number_intake} onChange={(pn) => setPhoneNumber(pn.target.value)}/>
+            {/* <button onClick={() => alert("we'll text " + phone_number_intake)}> */}
+            <button onClick={() => setSubmitted(true)}>
+              Text me my quote
+            </button>
+          </main>
+        )
+      }
+    </div>
   );
 }
 
